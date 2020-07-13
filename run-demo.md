@@ -134,7 +134,7 @@ We are going to use WebHooks in order to run Pipelines automatically when new co
     5. When the Build pipeline finishes we can promote the new build to production
 
         ~~~sh
-        tkn -n tekton-reversewords pipeline start reverse-words-promote-pipeline -r app-git=reverse-words-cicd-git -p pathToDeploymentFile=./deployment.yaml -p stageBranch=stage -p stageAppUrl=$(oc -n reverse-words-stage get route -l app=reversewords-stage -o jsonpath='{.items[*].spec.host}')
+        tkn -n reversewords-ci pipeline start reverse-words-promote-pipeline -r app-git=reverse-words-cicd-git -p pathToDeploymentFile=./deployment.yaml -p stageBranch=stage -p stageAppUrl=$(oc -n reverse-words-stage get route -l app=reversewords-stage -o jsonpath='{.items[*].spec.host}')
         ~~~
 
 ## Sealed Secrets
@@ -153,7 +153,7 @@ In order to solve this problem we are going to use Sealed Secrets, there are oth
 2. Deploy the KubeSeal Controller into the cluster
 
     ~~~sh
-    kubectl -n kube-system apply -f https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.12.4/controller.yaml
+    oc -n kube-system apply -f https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.12.4/controller.yaml
     ~~~
 3. Create a test secret
 
@@ -166,7 +166,7 @@ In order to solve this problem we are going to use Sealed Secrets, there are oth
     # Get updates
     git pull origin stage
     # Create the secret on a yaml file
-    kubectl -n reverse-words-stage create secret generic my-test-secret --from-literal=username=admin --from-literal=password=v3r1s3cur3 --dry-run=client -o yaml > /tmp/test-secret.yaml
+    oc -n reverse-words-stage create secret generic my-test-secret --from-literal=username=admin --from-literal=password=v3r1s3cur3 --dry-run=client -o yaml > /tmp/test-secret.yaml
     ~~~
 4. Seal the test secret
 

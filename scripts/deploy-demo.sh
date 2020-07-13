@@ -29,6 +29,8 @@ spec:
   source: redhat-operators
   sourceNamespace: openshift-marketplace
 EOF
+# TODO: wait for subscription instead of sleeping
+sleep 120
 mkdir -p /var/tmp/devconfus20
 git clone git@github.com:mvazquezc/reverse-words.git /var/tmp/devconfus20/reverse-words
 git clone git@github.com:mvazquezc/reverse-words-cicd.git /var/tmp/devconfus20/reverse-words-cicd
