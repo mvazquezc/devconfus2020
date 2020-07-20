@@ -1,6 +1,5 @@
 #!/bin/bash
-rm -rf /var/tmp/devconfus20/reverse-words/
-rm -rf /var/tmp/devconfus20/reverse-words-cicd/
+rm -rf /var/tmp/devconfus20/
 oc delete ns argocd
 oc delete ns reversewords-ci
 oc delete ns reverse-words-stage

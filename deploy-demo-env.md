@@ -47,13 +47,14 @@
     > **NOTE**: You need to fork these repositories and use your fork (so you have full-access)
 
     ~~~sh
-    git clone git@github.com:mvazquezc/reverse-words.git ~/reverse-words
-    git clone git@github.com:mvazquezc/reverse-words-cicd.git ~/reverse-words-cicd
+    mkdir -p /var/tmp/devconfus20/
+    git clone git@github.com:mvazquezc/reverse-words.git /var/tmp/devconfus20/reverse-words
+    git clone git@github.com:mvazquezc/reverse-words-cicd.git /var/tmp/devconfus20/reverse-words-cicd
     ~~~
 2. Go to the reverse-words-cicd repo and checkout the CI branch which contains our Tekton manifests
 
     ~~~sh
-    cd ~/reverse-words-cicd
+    cd /var/tmp/devconfus20/reverse-words-cicd
     git checkout ci
     ~~~
 3. Create a namespace for storing the configuration for our reversewords app pipeline

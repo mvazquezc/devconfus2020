@@ -24,7 +24,7 @@
     > **NOTE**: Update the ingresses on your fork to match your environment hostnames
 
     ~~~sh
-    cd ~/reverse-words-cicd
+    cd /var/tmp/devconfus20/reverse-words-cicd
     CLUSTER_WILDCARD=$(oc get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
     # Stash previous changes
     git stash
@@ -118,7 +118,7 @@ We are going to use WebHooks in order to run Pipelines automatically when new co
     2. We need to commit to the main branch, let's update the release number
      
         ~~~sh
-        cd ~/reverse-words/
+        cd /var/tmp/devconfus20/reverse-words/
         CURRENT_RELEASE=$(grep "var version" main.go  | awk -F '"' '{print $2}' | awk -F "." 'BEGIN{FS=OFS="."}{NF--; print}')
         NEW_MINOR=$(grep "var version" main.go  | awk -F '"' '{print $2}' | awk -F "." '{print $NF+1}')
         NEW_RELEASE="${CURRENT_RELEASE}.${NEW_MINOR}"
@@ -158,7 +158,7 @@ In order to solve this problem we are going to use Sealed Secrets, there are oth
 3. Create a test secret
 
     ~~~sh
-    cd ~/reverse-words-cicd
+    cd /var/tmp/devconfus20/reverse-words-cicd
     # Stash previous changes
     git stash
     # Update staging ingress
